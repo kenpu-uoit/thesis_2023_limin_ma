@@ -1,0 +1,109 @@
+\documentclass[
+normalmargins,
+12pt,
+openany,
+onehalfspacing,
+]{ut-thesis}
+
+% Adjust the margin's length and line spacing
+\usepackage{geometry}
+\usepackage{setspace}
+\geometry{left=1.5in,right=1.0in,top=1.0in,bottom=1.0in,includefoot}
+\doublespacing
+
+% Initally use roman numbering
+\pagenumbering{roman}
+
+% Adjust the appearance of the Table of Contents
+\usepackage{tocbibind}
+\usepackage[titles]{tocloft}
+
+% packages
+\usepackage[utf8]{inputenc}
+
+\usepackage[colorlinks]{hyperref} % for links
+\usepackage[backend=biber]{biblatex} % for references
+\usepackage{graphicx} % for embedding graphics
+\usepackage{booktabs} % for pretty tables
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{algorithm2e}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{lipsum} % for gibberish text
+\usepackage{todonotes}
+\usepackage{tabularx}
+\usepackage{svg}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{fvextra}
+\usepackage{bm}
+\usepackage{pdfpages}
+
+\setlength {\marginparwidth }{2cm}
+\setcounter{secnumdepth}{5}
+\svgpath{{my/graphics/}}
+
+% list of abbreviations
+\usepackage[intoc]{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Abbreviations}% and Symbols
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition} % switch to 'definition' theorem style
+\newtheorem{example}{Example}
+
+\newcommand\floorbrackets[1]{\ensuremath{%
+		\bm{\lfloor}\mkern-1mu%
+		\text{#1}%
+		\bm{\rfloor}}}
+
+\newcommand{\Attr}{\operatorname{attr}}
+\newcommand{\Field}{\operatorname{field}}
+\newcommand{\Values}{\mathbf{Values}}
+\newcommand{\Token}{\mathbf{Token}}
+\newcommand{\List}{\mathbf{List}}
+\newcommand{\Sim}{\mathrm{sim}}
+\newcommand{\Tokenize}{\mathbf{tokenize}}
+
+\newcommand{\thesisTitle}[8]{
+	\title{#2}
+	\author{#1}
+
+	\begin{titlepage}
+		\centering
+		\textbf{\large #2}
+		\\[1cm]
+
+		by
+		\\[1cm]
+
+		#1 % author
+		\\[1.0cm]
+
+		\begin{minipage}{4in}
+			\centering
+			\singlespacing{A thesis submitted to the \\ School of Graduate and Postdoctoral Studies in partial fulfillment of the requirements for the degree of}
+		\end{minipage}
+		\\[1.5cm]
+
+		\textbf{#3} % degree name
+		\\[1.5cm]
+
+		#4 % faculty name
+		\\[0.25cm]
+
+		#5 % school name
+		\\[0.25cm]
+
+		#6 % address
+		\\[0.25cm]
+
+		#7 #8
+		\\[0.5cm]
+
+		{\copyright\ #1, #8}
+	\end{titlepage}
+}

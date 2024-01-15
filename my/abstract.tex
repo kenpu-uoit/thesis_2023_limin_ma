@@ -1,0 +1,7 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Our research focuses on a novel method to query relational data. We propose the partial tuple search problem where a user can utilize keyword search to explore complex relational datasets. The challenge of evaluation of partial tuple queries is the performance bottleneck of fuzzy string matching using traditional full-text index structures. We propose a solution to overcome the bottleneck by incorporating horizontally partitioned full-text indexes and an embeddable neural network classifier in the query processing pipeline. The classifier is trained with self-supervision. It learns to optimize the partitioned indexes access pattern to accelerate query performance. Using textual features of user queries, the classifier infers the index access pattern so that fuzzy string matching subqueries are efficiently evaluated. We studied various network architectures and evaluated them against real-world datasets. Our experimental evaluation demonstrates that neural networks successfully learned how to optimize index access patterns for this use case.
+\newline
+
+\noindent{\textbf{Keywords:}} neural network; relational database; keyword search; optimization

@@ -1,0 +1,47 @@
+\chapter{Conclusions and Future Work}
+In this chapter, we summarize our work and describe possible continuing work that could be done in future.
+
+\section{Summary}
+Contributions from our work can be summarized as:
+\begin{itemize}
+    \item We propose partial tuple search as an extension of keyword search over relational data. It is a generalization of keyword search by allowing users to submit partial tuple queries, which can have both value-based keywords and schema-based structure information. Partial tuple search can be used by users with limited, but nonzero, knowledge over the schema of the underlying relational database.
+    
+    \item We demonstrate a query processing pipeline that can evaluate partial tuple search queries efficiently. 
+    It consists of four main steps: convert a partial tuple to a keyword query,
+    use an embedded neural network classifier to predict a dynamic access pattern of partitioned full-text indexes based on the keyword query, scan indexes to find top-$k$ candidates, and finally complete the partial tuple by finding an optimal match.
+    
+    The pipeline requires indexing each relation to a separate full-text index. It also needs a trained neural network classifier using sampled tuples from each relation.
+    
+    \item We identify bottleneck related to performing fuzzy string matching when using a monolithic full-text index. The bottleneck is related to the inverted index data structure used in a full-text index. When using $3$-gram tokenization to support fuzzy string matching, severe hash collision will happen because the number of documents is a lot bigger than that of 3-gram search terms. The performance will degrade from log-time $\mathcal{O}(\log n)$ to sequential scan $\mathcal{O}(n)$.
+
+    \item We design an index partition scheme to speed up index lookup. We partition tuples by their corresponding relations, i.e., each relation is indexed into a separate full-text index. The partitioned indexes give us an opportunity to optimize query evaluation by using a neural network. This approach does not incur the additional costs of parallel CPU loads.
+    
+    \item We design self-supervised neural networks to optimize partitioned index access, which is incorporated in the query processing pipeline. We use relation names as labels to avoid manual labelling of training data, which are generated using sampled tuples from each relation. 
+    
+    \item Our experimental evaluation shows that small neural networks work well for our use case. Our MLP models perform particularly well, while Conv1D models and MLP based transformer models are pretty close. On the other hand, the 3-grams trained networks are highly robust w.r.t. spelling errors.
+    
+\end{itemize}
+
+
+\section{Discussion of limitations and Future work}
+\label{sec:limitation}
+As described in Section~\ref{sec:assumption}, we assume that the counts of relations' tuples are not skewed, and that the vocabulary of the database is not affected by any operation applied to the database. 
+
+If the first assumption is violated, for example, one relation has an extremely large number of tuples, our approach of partitioning index based on relations can not effectively tackle the bottleneck related to the inverted index any more. The partitioned indexes corresponding to large relations will have the same bottleneck caused by hashing collision in the inverted index data structure. Therefore, we will have to partition large relations based on some criteria. The key is to have the resultant partitions having different vocabularies, which could help training a more accurate neural network. We could partition a large relation by attributes or attribute values.
+\begin{itemize}
+    \item Partition a large relation by dividing its attributes into subsets. An intuition is to group attributes with similar vocabulary into the same partition. Thus, different partitions are likely to have quite different vocabularies. 
+    \item Partition a large relation based on certain attribute values. For example, if a relation has an attribute about ``city'', we can divide the relation by city names. Each partition holds the data for a continuous range of the first letter of the city name, e.g., A-I, J-R and S-Z. The key of this approach is to pick an appropriate partition key for the relation.
+    \item To the end of having partitions with vocabularies as different as possible, the first partitioning scheme could be a better option. This is because different attributes in a relation usually have different sets of limited values. On the other hand, partitions resulting from grouping by certain attribute values will have the same schema as the original relation, which means they are more likely to have similar vocabulary.
+\end{itemize}
+This is a possible future work direction that can improve the solutions proposed in the thesis.
+
+Regarding the second assumption, if the vocabulary of the database changes, we can apply fine-tuning to the neural network classifier.
+\begin{itemize}
+    \item We freeze the network and apply incremental fine-tuning to embeddings only. We could freeze existing embeddings and only train new embeddings, or fine-tune all embeddings.
+    \item We don't freeze the network. We simply apply fine-tuning to both embeddings and the network. This approach will take longer training time than the first approach. But since our network is relatively small, the extra training time is likely not significant.
+\end{itemize}
+This can be another direction of future work.
+
+The current sizes of our neural networks are small enough to be embedded in a mobile application. For deployment scenarios involving a backend server, we can relax its size limit. This means that we can design deeper neural network architectures that are still embeddable in a system running on a server. In order to do that, we will need to resort to automatic tuning of hyperparameters to find optimal network designs. This can be an interesting future work, too.
+
+Our work uses full-text index, Apache Lucene in particular, to index relational data and evaluate partial tuple queries. A possible future work is to integrate partial tuple search into existing RDBMS. This would give users a more flexible and powerful way to query relational databases.

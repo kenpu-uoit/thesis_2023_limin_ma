@@ -1,0 +1,64 @@
+% Lucene and inverted list
+Apache Lucene is an Java-based open-source search engine library that offers full-text indexing and search features.
+Lucene was initially released in 1999 and joined Apache Software Foundation in 2001 \cite{McCandless2010}.
+According to Lucene's features webpage \footnote{Lucene Features: \url{https://lucene.apache.org/core/features.html}}, 
+its indexing implementation is scalable and effcient,  which can index over 800GB/hour with only 1MB heap size.
+It also implements accurate and efficient search algorithms. Under the hood, Lucene uses inverted index.
+Inverted index is an indexing data structure that maps a word to documents. This allows Lucene to lookup keywords and return documents efficiently.
+
+% String matching
+When we search documents, exact match may not be the ideal approach. A search keyword could be spelled slightly differently, e.g. "color" vs "colour".
+A user may misspell a keyword. In addition, we may want to search documents based on a keyword and all its variations, e.g. "Canada" and "Canadian".
+Therefore, fuzzy string matching plays an important role in text search. There are various methods to match string approximately. We will present them in section \ref{background:textsearch}.
+
+% ML enabled data structures
+The advancement of machine learning techniques leads to development of learned data structures, 
+which aim to discover and exploit patterns in input data in order to achieve improvement in time and space efficiency.
+One such example is learned indexes. Kraska et al. \cite{kraska2018case} showed that learned indexes could improve performance of speed up to 70\% 
+when compared to cache-optimized B-Trees.
+
+\section{Text Search}
+\label{background:textsearch}
+
+\subsection{Tokenization}
+
+In natural language processing, tokenization is the process of splitting a long string into a list of tokens based on certain criteria.
+One of the frequently used method is to split strings by whitespaces. For example, the sentence:
+\begin{quote}
+The quick brown fox jumps over the lazy dog
+\end{quote}
+will become a list of tokens as,
+\begin{quote}
+	The, quick, brown, fox, jumps, over, the, lazy, dog
+\end{quote}
+
+% char-level ngram
+
+\subsection{Inverted index}
+Inverted index is a data structure that allows fast full-text serach. It maps a search term, usually a word, to a list of documents that contain it. 
+
+
+
+
+\subsection{Fuzzy matching}
+\subsubsection{n-gram}
+\subsubsection{Jaccard similarity}
+\subsubsection{String distance} % edit distance/Levenshtein distance
+
+% core concepts: inverted index, documents, fields, analysis(analyzers), searching(query, IndexSearcher)
+% query syntax and examples
+% TermQuery, PrefixQuery, WildcardQuery, PhraseQuery, FuzzyQuery
+\subsection{Lucene}
+
+\section{Machine Learning with Neural Networks}
+\label{background:ml_nn}
+
+{\color{red}
+\begin{itemize}
+    \item MLP
+    \item Conv1D
+    \item LSTM
+    \item Attention
+    \item Applications to NLP with token embeddings
+\end{itemize}
+}

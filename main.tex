@@ -1,0 +1,59 @@
+% !TeX document-id = {248a0dfa-b565-486e-ba41-17b905998a24}
+% !TeX TS-program = pdflatex
+% !BIB TS-program = biber
+% !TeX root = main.tex
+\input{my/preambles}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+%\linespread{2}
+%\input{my/info}
+% reference database
+
+\addbibresource{my/references.bib}
+
+\begin{document}
+%\frontmatter
+
+\thesisTitle
+	{Limin Ma}
+	{Optimizing Relational Search With Embedded Neural Network}
+	{Master of Science in Computer Science}
+	{Faculty of Science}
+	{University of Ontario Institute of Technology (Ontario Tech University)}
+	{Oshawa, Ontario, Canada}
+	{April}
+	{2023}
+
+\input{my/exam_info}
+\input{my/abstract}
+\input{my/author_declaration.tex}
+\input{my/stmt_contribution.tex}
+\input{my/acknowledgements.tex}
+
+% Include lists in singlespacing
+\onehalfspacing
+\tableofcontents
+\listoftables
+\listoffigures
+
+\input{my/abbrv}
+\printnomenclature 
+
+\clearpage
+\doublespacing
+\pagenumbering{arabic}
+
+\mainmatter
+\input{my/chapters}
+
+\backmatter
+\printbibliography[heading=bibintoc]
+\end{document}

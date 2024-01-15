@@ -1,0 +1,27 @@
+\chapter{Related Work}
+
+\section{Relational keyword search}
+A lot of work has been done for relational keyword search. In this section, we review some of the previous works.
+
+\noindent{\bf{Early papers:}} Hristidis and Papakonstantinou \cite{hristidis2002discover} presented DISCOVER, a system that allowed users to submit keyword queries to relational databases without the knowledge of the underlying database schema. DISCOVER processes keyword queries to generate candidate networks of relations and create execution plans to be submitted to RDBMS, which will return search results.
+Liu et al. \cite{liu2006effective} proposed an information retrieval (IR) ranking strategy for effective keyword search related to relational databases. The ranking strategy used four normalization factors for computing ranking scores. 
+All answers of a query were ranked based on computed ranking scores, and the top-$k$ answers were returned as results.
+
+\noindent{\bf{Extension to include frequent co-occurring term (FCT):}} Tao and Yu \cite{tao2009finding} proposed an operator called frequent co-occurring term (FCT) search, and an algorithm that could solve FCT search effectively without using the conventional keyword search methods. The purpose of FCT search is to extract the terms that most accurately represent a set of keywords, i.e., to discover the concepts closely related to the keywords set.
+
+\noindent{\bf{Survey of keyword search:}} A survey about research on keyword search in relational databases was done by Park and Lee \cite{park2011keyword}. First they listed fundamental characteristics of keyword search in relational databases: an indexing structure, being able to formalize internal queries based on query keywords, being able to correctly constructing candidate answers, and an answer ranking strategy. Then they investigated five research dimensions, including data representation, ranking, efficient processing, query representation, and result presentation. At the end, they pointed out some promising research directions. One of them is efficient top-$k$ query processing. The authors believed that keyword search in relational databases would benefit from advance in top-$k$ query processing techniques.
+
+
+\noindent{\bf{Interpretation of keywords in query:}} Zeng et al. \cite{zeng2012isearch} presented a framework based on keyword query interpretations. It incorporated human feedback to remove keyword vaguenesses and use a ranking model for query interpretation evaluation afterwards.
+
+\noindent{\bf{Top-$k$ recommendation:}} Meng et al. \cite{meng2017top} presented an approach to solve typical and semantically related queries to a given query. This can help users to explore their query intentions and improve their query formulation.
+
+
+
+\section{Machine learning based database optimization}
+
+\noindent{\bf{Index optimization:}} Ding et al. \cite{ding2020alex} presented an updatable learned index called ALEX, an in-memory index structure, for index optimization. ALEX addressed practical issues related to various types of workloads with dynamic updates. RadixSpline \cite{kipf2020radixspline}, another learned index, tackled the issue of index implementation difficulty. RadixSpline offered quick build using a single pass over data while achieving competitive performance.
+
+\noindent{\bf{Query optimization:}} Bao \cite{marcus2022bao} is a learned query optimization system using reinforcement learning. It can learn from mistakes and adapt to dynamic workloads, data, and schema, thus is capable of applying per-query optimization hints.
+
+\noindent{\bf{Cost models for query processing:}} Siddiqui1 et al. \cite{siddiqui2020cost} investigated how to learn cost models from cloud workloads for big data systems. The learned cost models could be integrated with existing query optimizers. Such a query optimizer could make accurate cost predictions, which can improve resource efficiency in big data systems.

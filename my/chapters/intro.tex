@@ -1,0 +1,92 @@
+\chapter{Introduction}
+
+\section{Motivation}
+
+For many decades, with the availability of low cost computers and Internet access, the amount of digital information or data has increased at an ever growing pace. This poses a challenge to managing information reliably and efficiently. 
+%we have been creating, archiving and organizing digital information
+
+Various database technologies and query processing engines have been developed over the past several decades to meet the appetite of information management. There are two main types of databases, relational database and non-relational database. Relational database management system (RDBMS)  is a pillar of database technology. MySQL and PostgreSQL are two examples of open source RDBMS. Examples of non-relational databases include semi-structured databases such as MongoDB \cite{mongodb} and graph databases such as Neo4j \cite{neo4j}. 
+
+In contrast to its peers, RDBMS is proven to be the preferred choice for most of the data management needs.  There are several reasons:
+
+\begin{itemize}
+ \item Relational databases help businesses' utilization of data by maintaining data in a simple and efficient way. 
+ The relational data model is simple, easy to use and type-safe.
+ Relational databases are typically capable of handling transactions, which is often required by businesses.
+ The schema management features of RDBMS are robust enough to accurately model business and application requirements, and yet at the same time, provide a rich set of constraints and data consistency checks.  Thus, RDBMS provides a higher level of data consistency.
+
+ \item The Structured Query Language (SQL) is the standard programming language for managing data in relational databases. SQL has been the de facto industry standard for data analysis for several decades, and is still the most widely used method. It can quickly and efficiently process queries with the help of highly optimized SQL engines. It does not require extensive coding and programming skills, and offers users an interactive interface with underlying databases.
+
+ \item Storing data using relational format is the safest choice when facing with the risks of digital data decay and software incompatibility issues.
+ RDBMSes are widely used in various applications including mobile apps, Web services, distributed computing clusters, etc. because they offer robust data management capabilities. Combined with SQL's portability, 
+ RDBMS and SQL provide the most readily available software compatibility.
+\end{itemize}
+
+The dominance of RDBMS started to be challenged by the rise of the World Wide Web. The default mode of content creation on the World Wide Web is textual data and unstructured data. Such content apparently lacks relational structures. Therefore, it is unnatural to fit such data into RDBMS systems. Consequently, SQL is no longer the most suitable language to express queries over textual and unstructured data.
+
+The need to carry out web searches gave the birth of search engines. Search engines started to popularize key-value stores as a preferred choice of data storage, and keyword search as a preferred choice for data retrieval.  As modern search engines demonstrated, keyword search is a surprisingly effective approach of data retrieval. Furthermore, highly scalable and performant full-text indexes, such as Apache Lucene, are available to support keyword search queries at scale. But at the same time, keyword search has limitations that can not be ignored. Primarily, keyword search does not offer ways to reason over a data schema, and thus does not offer the end users ways to easily provide relational joins, selection over predicates or data analytics.
+
+In attempts to overcome the limitations of keyword search while preserving its advantages, many researchers have proposed hybrid query languages that share features of SQL and keyword search.  Most of the proposed systems extend SQL with keyword search, and use a relational database as data storage. While such systems do address the limitations of both SQL and keyword search over relational data to some extent, a common issue is scalability. The performance bottleneck is the inefficiency of relational database indexes when used for full-text search.
+
+In this thesis, we are motivated by the following questions:
+
+\begin{itemize}
+\item Can we extend keyword search queries to enhance their expressive power when the underlying data is relational?
+
+\item Can we utilize full-text indexes that are designed for keyword search to answer searching of relational data?
+
+\item What are different ways to optimize the evaluation of keyword search queries?
+\end{itemize}
+
+\section{Machine Learning}
+
+The rise of machine learning in recent years was due to two major factors, the explosion of data and the ever more affordable computing power. The ubiquitousness of Internet created the explosion of data that machine learning can consume, and cheap computing resources made it possible to train machine learning algorithms using large amounts of data. Machine learning has found successful applications in almost every corner of computer science and engineering.  The most prominent tool in machine learning is neural networks.  Complex neural network architectures have been designed and trained to perform various tasks at near-human or superhuman levels. One example is AlphaGo, which is a computer program that plays the board game Go. It grabbed the world's attention by defeating a Go world champion in 2016 \cite{alphago}. 
+
+What is particularly amazing about machine learning's success is how widely neural network approaches can be applied, ranging from images to texts, from semantic understanding to content generation.
+
+The best aspects of applying neural networks as part (or whole) of a solution are:
+
+\begin{itemize}
+
+\item Neural networks are more robust than deterministic and combinatorial algorithms.  Given when the input to the network deviates from expectation, the network can complete the processing in a continuous fashion, often producing near optimal results.
+
+\item Neural networks can be much faster during inference mode.  Since neural networks essentially involve only matrix based numerical operations, they are well suited for modern CPUs and general purpose GPUs.  In contrast, traditional algorithms utilize more complex data structures which often require large amounts of random memory access, making them difficult to optimize at the CPU / GPU level.
+
+\item Neural networks are easier at design time.  Machine learning approaches shift the solution complexity from algorithmic design to data collection.  When designing a neural network, we are essentially choosing the right black box that fits the overall system the best.  The challenge is not to design the internal parameters of the black box, but rather to gather sufficient data to evaluate the quality of different candidate blackboxes.  It's been repeatedly demonstrated in the domains including but not limited to image processing, natural language processing and combinatorial games, neural networks with simple architectures (but large number of parameters) outperform sophisticated handcrafted algorithms.
+\end{itemize}
+
+Traditionally, network based approaches require the availability of a large corpora of training data.  Often this requires either expensive data collection schemes or human manual labeling of data.  But in situations where training data is not available, it is still possible to apply neural networks.  Self-supervised learning and reinforcement learning are just two examples of training neural networks without prior labeled training data.
+
+While our research objective is novel keyword queries of relational databases, we are particularly motivated to incorporate neural networks into our query processing pipeline in a self-supervised manner.  Towards this goal, we will need to
+
+\begin{itemize}
+\item identify problems that can be solved using self-supervised neural networks.
+\item design neural networks and incorporate them into the query processing pipeline.
+\end{itemize}
+
+\section{Overview of thesis}
+
+The problems we address in this thesis are:
+
+\begin{itemize}
+\item extension of keyword search queries over relational data in ways that we can still enjoy efficient query evaluation using full-text indexes.
+
+\item identify components in the query evaluation pipeline that can be optimized by self-supervised neural networks.
+\end{itemize}
+
+Towards the first problem, we proposed a novel relational search problem we call {\em partial tuple search}.  It is a generalization of keyword search by allowing users to specify {\em partial tuples} as queries, which can have both value-based keywords and schema-based structure information.  Partial tuples can be used for information retrieval when users have limited, but nonzero, knowledge over the schema of the underlying relational database.
+
+We demonstrate that a partial tuple search query can be evaluated in a pipeline consisting of the following stages:
+
+\begin{itemize}
+\item Generating a keyword query from a partial tuple.
+\item Evaluating the keyword query using one or more full-text indexes.
+\item Completing the partial tuple by matching keyword search results with the partial tuple.
+\end{itemize}
+
+It is well known that fuzzy string matching is generally more expensive to evaluate keyword search queries.  In our use case, when we perform fuzzy partial tuple search, the full-text index becomes the performance bottleneck.  A solution is to partition the full-text index, and perform fuzzy keyword search over multiple partitions.  This creates a query optimization opportunity: a well selected index access pattern can speed up the keyword search performance without the additional burden of parallel CPU load.
+
+We have designed neural networks that can learn from the relational data to optimize index access patterns.  The neural network performs classification based on features from textual data in the relational database.  Using the classification probability we can optimize index access patterns so that search time is minimized.
+%Our experimental evaluation shows that transformer based networks can achieve optimal index access well over 90\% of the times.
+
+
