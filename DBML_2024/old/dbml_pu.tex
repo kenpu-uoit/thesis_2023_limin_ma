@@ -1,0 +1,82 @@
+\documentclass{IEEEtran}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+
+
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+
+\newcommand\floorbrackets[1]{\ensuremath{%
+		\bm{\lfloor}\mkern-1mu%
+		\text{#1}%
+		\bm{\rfloor}}}
+
+\newcommand{\Attr}{\operatorname{attr}}
+\newcommand{\Field}{\operatorname{field}}
+\newcommand{\Values}{\mathbf{Values}}
+\newcommand{\Token}{\mathbf{Token}}
+\newcommand{\List}{\mathbf{List}}
+\newcommand{\Sim}{\mathrm{sim}}
+\newcommand{\Tokenize}{\mathbf{tokenize}}
+
+
+
+
+\begin{document}
+\title{
+    Accelerating Relational Keyword Queries With Embedded Neural Networks
+}
+\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+}
+\maketitle
+
+\begin{abstract}
+Relational keyword queries have proven to be highly effective for
+information retrieval.  The challenge of evaluating keyword queries for relational databases is the performance bottleneck of fuzzy string matching when traditional full-text index structures.  We propose a solution to overcome performance bottlenecks by incorporating horizontally partitioned full-text indexes.  We rely on a neural network router to optimize the index lookup strategy to minimize index miss rate and thus maximize performance.  Using textural features of the user queries, the neural network router supports fuzzy string matching.  We evaluated different network architectural designs against real-world datasets.  Our experiments demostrates that the neural network router can be self-trained and learn how to optimize index access effectively. 
+\end{abstract}
+
+\section{Introduction}
+
+Paper \cite{du2021tabularnet}
+
+\bibliographystyle{plain}
+\bibliography{references.bib}
+\end{document}
+
