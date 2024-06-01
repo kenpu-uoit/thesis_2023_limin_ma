@@ -44,24 +44,19 @@
 Accelerating Relational Keyword Queries With Embedded Predictive Neural Networks
 }
 
-% \author{\IEEEauthorblockN{Limin Ma}
-% \IEEEauthorblockA{\textit{Faculty of Science} \\
-% \textit{Ontario Tech University}\\
-% Oshawa, Canada \\
-% limin.ma@ontariotechu.net}
-% \and
-% \IEEEauthorblockN{Ken Q. Pu}
-% \IEEEauthorblockA{\textit{Faculty of Science} \\
-% \textit{Ontario Tech University}\\
-% Oshawa, Canada \\
-% ken.pu@ontariotechu.net}
-% }
-
-\author{
-	\IEEEauthorblockN{Author names reducted}
-	\IEEEauthorblockA{\textit{Author affiliation redacted} \\
-	}
+\author{\IEEEauthorblockN{Limin Ma}
+\IEEEauthorblockA{\textit{Faculty of Science} \\
+\textit{Ontario Tech University}\\
+Oshawa, Canada \\
+limin.ma@ontariotechu.net}
+\and
+\IEEEauthorblockN{Ken Q. Pu}
+\IEEEauthorblockA{\textit{Faculty of Science} \\
+\textit{Ontario Tech University}\\
+Oshawa, Canada \\
+ken.pu@ontariotechu.net}
 }
+
 
 \maketitle
 
@@ -86,7 +81,15 @@ keyword query, neural network, index structures
 \end{IEEEkeywords}
 
 \section{Introduction}
+Keyword search is a natural way for users to express their information needs. However, keyword search queries can be ambiguous and imprecise.  Furthermore, query evaluation can be slow when the database is large, especially when the database contains large repetitions of similar text data.
 
+In this paper, we make a number of contributions to address keyword search queries in relational databases.
+
+\begin{itemize}
+	\item Define the problem of relational keyword queries as a {\em partial tuple search}.
+	\item We propose a neural network based solution to optimize the query evaluation pipeline for relational keyword queries.
+	\item We propose a partitioned index structure to support fuzzy string matching.
+\end{itemize}
 
 \section{Partial tuple search}
 In this section, we formalize keyword queries as {\em partial tuple search}.
@@ -600,7 +603,7 @@ In this experiment, we investigate the impact of misspelled words in queries on 
 
 Keyword search is an active area of research starting with DISCOVER \cite{hristidis2002discover}, a system for search relational databases with keyword queries.  Since then, there have been numerous work \cite{yu2022keyword}, extended to fuzzy matching, and to graph databases.
 
-Since the introduction of neural networks and various architectures \cite{lecun2015deep,DBLP:journals/corr/VaswaniSPUJGKP17,DBLP:journals/corr/abs-2105-01601}, deep learning techniques in text processing \cite{kudo2018sentencepiece,gorishniy2021revisiting,tripathy2021comprehensive} were shown to be highly effective.  Many neural network based solutions had been proposed for tabular data embedding \cite{du2021tabularnet,zhang2019table2vec,huang2020tabtransformer,gorishniy2022embeddings,luo2020network,yin-etal-2020-tabert,tabbie2021}.  In our work, we demonstrated that such embedding approach can be integrated into keyword query processing pipeline and index optimization.
+Since the introduction of neural networks and various architectures \cite{DBLP:journals/corr/VaswaniSPUJGKP17,DBLP:journals/corr/abs-2105-01601}, deep learning techniques in text processing \cite{kudo2018sentencepiece,gorishniy2021revisiting,tripathy2021comprehensive} were shown to be highly effective.  Many neural network based solutions had been proposed for tabular data embedding \cite{du2021tabularnet,huang2020tabtransformer,gorishniy2022embeddings,tabbie2021}.  In our work, we demonstrated that such embedding approach can be integrated into keyword query processing pipeline and index optimization.
 
 Neural networks have been applied to learn indexes for multidimensional data \cite{tsunamivldb,DBLP:conf/sigmod/NathanDAK20,ding2020alex}, and for tree structures \cite{ma2022film}.  The use of neural networks for learning indexes has been shown to be effective in reducing the query evaluation time.  In contrast to existing literature, our work focuses on learning the index access pattern for keyword queries.
 
